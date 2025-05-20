@@ -203,15 +203,19 @@
       font-size: 12px;
       color: #777;
     }
+    .toc-columns {
+  column-count: 2;
+  column-gap: 20px;
+}
   </style>
 </head>
 <body>
 <div class="page cover">
   <div class="cover-content">
     <h1>המדריך המושלם לתנור פיצה של Cozze</h1>
-    <div class="image-placeholder" style="height: 300px; border-radius: 5px;">
-      <img src="pizza.png" alt="תנור פיצה Cozze" style="max-width: 100%; max-height: 300px; width: auto; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-    </div>
+    <div class="image-placeholder" style="height: 200px; border-radius: 5px;">
+  <img src="pizza.png" alt="תנור פיצה Cozze" style="max-width: 100%; max-height: 200px; ...">
+  </div>
     <h3 style="margin-top: 40px; color: #555;">מדריך מקיף להכנת פיצה נאפוליטנית מושלמת</h3>
   </div>
 </div>
@@ -219,18 +223,20 @@
 <div class="page">
   <h2>תוכן עניינים</h2>
   <div class="toc">
-    <ul>
-      <li><a href="#intro">הקדמה</a></li>
-      <li><a href="#dough">מתכון לבצק פיצה נאפוליטני</a></li>
-      <li><a href="#stretching">טכניקת רידוד הבצק</a></li>
-      <li><a href="#sauce">הכנת רוטב פיצה קלאסי</a></li>
-      <li><a href="#baking">הפעלת התנור והאפייה</a></li>
-      <li><a href="#cleaning">ניקיון ותחזוקה</a></li>
-      <li><a href="#tips">טיפים מתקדמים</a></li>
-      <li><a href="#safety">בטיחות</a></li>
-      <li><a href="#troubleshooting">פתרון בעיות נפוצות</a></li>
-      <li><a href="#glossary">מילון מונחים לפיצה נאפוליטנית</a></li>
-    </ul>
+    <div class="toc-columns"> <!-- Added two-column layout -->
+      <ul>
+        <li><a href="#intro">הקדמה</a></li>
+        <li><a href="#dough">מתכון לבצק פיצה נאפוליטני</a></li>
+        <li><a href="#stretching">טכניקת רידוד הבצק</a></li>
+        <li><a href="#sauce">הכנת רוטב פיצה קלאסי</a></li>
+        <li><a href="#baking">הפעלת התנור והאפייה</a></li>
+        <li><a href="#cleaning">ניקיון ותחזוקה</a></li>
+        <li><a href="#tips">טיפים מתקדמים</a></li>
+        <li><a href="#safety">בטיחות</a></li>
+        <li><a href="#troubleshooting">פתרון בעיות נפוצות</a></li>
+        <li><a href="#glossary">מילון מונחים לפיצה נאפוליטנית</a></li>
+      </ul>
+    </div>
   </div>
   
   <div id="intro" class="section">
@@ -248,8 +254,7 @@
   <div class="page-number">1</div>
 </div>
 
-<div class="page">
-  <div id="dough" class="section">
+<div id="dough" class="section">
     <h2>מתכון לבצק פיצה נאפוליטני</h2>
     
     <div class="ingredients">
@@ -262,6 +267,9 @@
         <li>20 מ"ל שמן זית (אופציונלי, לא במתכון המסורתי)</li>
       </ul>
     </div>
+  </div>
+  <div class="page-number">1</div>
+</div>
     
     <h3>הכנה במיקסר</h3>
     
