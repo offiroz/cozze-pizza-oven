@@ -2,785 +2,162 @@
 <html dir="rtl" lang="he">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>המדריך המושלם לתנור פיצה של Cozze</title>
   <style>
-    @page {
-      size: A4;
-      margin: 2cm;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      direction: rtl;
-      text-align: right;
+    * {
       margin: 0;
       padding: 0;
-      background-color: #fffaf5;
+      box-sizing: border-box;
     }
-    .page {
-      page-break-after: always;
-      padding: 2cm;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-      height: 257mm; /* A4 height minus margins */
-    }
-    .cover {
-      text-align: center;
-      height: 257mm;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #fff3e0, #ffecb3);
-      position: relative;
-    }
-    .cover::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('/api/placeholder/800/800');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.2;
-      z-index: 0;
-    }
-    .cover-content {
-      position: relative;
-      z-index: 1;
-    }
-    h1 {
-      color: #d32f2f;
-      font-size: 36px;
-      margin-bottom: 20px;
-      font-weight: 900;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #d32f2f;
-      font-size: 24px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #f5f5f5;
-      padding-bottom: 5px;
-    }
-    h3 {
-      color: #e64a19;
-      font-size: 18px;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-    .toc {
-      background-color: #f9f9f9;
+    
+    body {
+      font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #005059 0%, #266041 100%);
+      min-height: 100vh;
       padding: 20px;
-      border-radius: 5px;
-      margin-bottom: 30px;
-    }
-    .toc h2 {
-      margin-top: 0;
-    }
-    .toc ul {
-      list-style-type: none;
-      padding-right: 20px;
-    }
-    .toc li {
-      margin-bottom: 8px;
-    }
-    .toc a {
-      text-decoration: none;
-      color: #d32f2f;
-    }
-    .toc a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-    .box {
-      background-color: #fff9c4;
-      border-right: 4px solid #fbc02d;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 4px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      direction: rtl;
       text-align: right;
     }
-    th {
-      background-color: #f5f5f5;
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 80, 89, 0.3);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #005059 0%, #266041 100%);
+      color: #ffffff;
+      padding: 40px 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 0;
+    }
+    
+    .content {
+      padding: 40px 30px;
+      background-color: #efeaea;
+    }
+    
+    .guide-container {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 16px rgba(0, 80, 89, 0.1);
+      margin-bottom: 30px;
+    }
+    
+    .canva-embed {
+      margin: 20px 0;
+    }
+    
+    .embed-link {
+      display: inline-block;
+      color: #005059;
+      text-decoration: none;
       font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background-color: #efeaea;
+      border-radius: 8px;
+      border: 2px solid #005059;
+      transition: all 0.3s ease;
     }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
+    
+    .embed-link:hover {
+      background-color: #005059;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 80, 89, 0.2);
     }
-    .page-number {
-      position: absolute;
-      bottom: 1cm;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-    }
-    .header-image {
-      width: 100%;
-      height: 100px;
-      background-color: #f5f5f5;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      background-image: url('/api/placeholder/800/200');
-      background-size: cover;
-      background-position: center;
-    }
-    .ingredients {
-      background-color: #e8f5e9;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-    .ingredients h3 {
-      color: #2e7d32;
-      margin-top: 0;
-    }
-    .step {
-      margin-bottom: 15px;
-      position: relative;
-      padding-right: 30px;
-    }
-    .step-number {
-      position: absolute;
-      right: 0;
-      top: 0;
-      background-color: #d32f2f;
-      color: white;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 22px;
-      font-size: 14px;
-    }
-    .tip {
-      background-color: #e3f2fd;
-      border-right: 4px solid #1976d2;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 4px;
-    }
-    .warning {
-      background-color: #ffebee;
-      border-right: 4px solid #d32f2f;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 4px;
-    }
-    .image-placeholder {
-      background-color: #f5f5f5;
-      height: 150px;
-      margin: 20px 0;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #999;
-      font-style: italic;
-    }
+    
     .footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      font-size: 12px;
-      color: #777;
+      background-color: #005059;
+      color: #ffffff;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
-    .toc-columns {
-  column-count: 2;
-  column-gap: 20px;
-}
+    
+    .icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .header p {
+        font-size: 1rem;
+      }
+      
+      .content {
+        padding: 20px 15px;
+      }
+      
+      .guide-container {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-<div class="page cover">
-  <div class="cover-content">
-    <h1>המדריך המושלם לתנור פיצה של Cozze</h1>
-    <div class="image-placeholder" style="height: 200px; border-radius: 5px;">
-  <img src="pizza.png" alt="תנור פיצה Cozze" style="max-width: 100%; max-height: 200px; ...">
-  </div>
-    <h3 style="margin-top: 40px; color: #555;">מדריך מקיף להכנת פיצה נאפוליטנית מושלמת</h3>
-  </div>
-</div>
-
-<div class="page">
-  <h2>תוכן עניינים</h2>
-  <div class="toc">
-    <div class="toc-columns"> <!-- Added two-column layout -->
-      <ul>
-        <li><a href="#intro">הקדמה</a></li>
-        <li><a href="#dough">מתכון לבצק פיצה נאפוליטני</a></li>
-        <li><a href="#stretching">טכניקת רידוד הבצק</a></li>
-        <li><a href="#sauce">הכנת רוטב פיצה קלאסי</a></li>
-        <li><a href="#baking">הפעלת התנור והאפייה</a></li>
-        <li><a href="#cleaning">ניקיון ותחזוקה</a></li>
-        <li><a href="#tips">טיפים מתקדמים</a></li>
-        <li><a href="#safety">בטיחות</a></li>
-        <li><a href="#troubleshooting">פתרון בעיות נפוצות</a></li>
-        <li><a href="#glossary">מילון מונחים לפיצה נאפוליטנית</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div id="intro" class="section">
-    <h2>הקדמה</h2>
-    <div class="header-image"></div>
-    <p>ברכות על רכישת תנור הפיצה של Cozze! עם המדריך הזה, תוכל להפיק את המיטב מהתנור החדש שלך ולהכין פיצות ברמה מקצועית בנוחות הבית שלך.</p>
-    
-    <p>המדריך מכיל את כל המידע הדרוש לך - ממתכון לבצק איכותי, דרך טכניקות רידוד מקצועיות, ועד לטיפים לתחזוקת התנור. תנור הפיצה שלך מסוגל להגיע לטמפרטורות גבוהות במיוחד, מה שיאפשר לך ליצור פיצות בסגנון איטלקי אמיתי עם קרום מושלם ותוספות עסיסיות.</p>
-    
-    <div class="box">
-      <strong>פיצה נאפוליטנית אמיתית</strong><br>
-      פיצה נאפוליטנית מסורתית מאופיינת בבצק דק במרכז עם שוליים תפוחים, זמן אפייה קצר (60-90 שניות) בטמפרטורה גבוהה מאוד (430-480°C), ומעט תוספות איכותיות.
-    </div>
-  </div>
-  <div class="page-number">1</div>
-</div>
-
-<div id="dough" class="section">
-    <h2>מתכון לבצק פיצה נאפוליטני</h2>
-    
-    <div class="ingredients">
-      <h3>מרכיבים (ל-6 פיצות אישיות)</h3>
-      <ul>
-        <li>1 קילו קמח "00" (או קמח לחם איכותי עם אחוז גלוטן גבוה)</li>
-        <li>650 מ"ל מים בטמפרטורת החדר (65%)</li>
-        <li>20 גרם מלח (2%)</li>
-        <li>3 גרם שמרים יבשים (0.3%) או 9 גרם שמרים טריים</li>
-        <li>20 מ"ל שמן זית (אופציונלי, לא במתכון המסורתי)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-number">1</div>
-</div>
-    
-    <h3>הכנה במיקסר</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      <strong>המסת השמרים:</strong> ערבב את השמרים עם כ-50 מ"ל מהמים הפושרים והמתן 5-10 דקות עד שמתחילה תסיסה.
+  <div class="container">
+    <div class="header">
+      <h1>🍕 המדריך המושלם לתנור פיצה של Cozze</h1>
+      <p>מדריך מקיף להכנת פיצה נאפוליטנית מושלמת</p>
     </div>
     
-    <div class="step">
-      <div class="step-number">2</div>
-      <strong>ערבוב ראשוני:</strong>
-      <ul>
-        <li>הכנס את הקמח לקערת המיקסר</li>
-        <li>הוסף את תערובת השמרים וכ-550 מ"ל מהמים (השאר כ-50 מ"ל בצד)</li>
-        <li>התחל לערבב עם וו לישה במהירות נמוכה למשך 3-4 דקות</li>
-      </ul>
+    <div class="content">
+      <div class="guide-container">
+        <div class="canva-embed">
+          <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
+           padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+           border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+              src="https://www.canva.com/design/DAGn4aOXRrY/rh2FJZbaJeHZslur_vbVtg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 20px;">
+            <a href="https://www.canva.com/design/DAGn4aOXRrY/rh2FJZbaJeHZslur_vbVtg/view?utm_content=DAGn4aOXRrY&utm_campaign=designshare&utm_medium=embeds&utm_source=link" 
+               target="_blank" rel="noopener" class="embed-link">
+              📖 פתח את המדריך המלא
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="step">
-      <div class="step-number">3</div>
-      <strong>הוספת מלח:</strong>
-      <ul>
-        <li>הוסף את המלח עם שארית המים</li>
-        <li>המשך לערבב במהירות בינונית למשך כ-5 דקות</li>
-      </ul>
-    </div>
-    
-    <div class="step">
-      <div class="step-number">4</div>
-      <strong>לישה:</strong>
-      <ul>
-        <li>העבר למהירות בינונית-גבוהה ולוש למשך 8-10 דקות נוספות</li>
-        <li>הבצק מוכן כשהוא חלק, אלסטי ונפרד מדפנות הקערה</li>
-      </ul>
-    </div>
-    
-    <div class="tip">
-      <strong>טיפ:</strong> לבדיקת מוכנות הבצק, בצע מבחן "חלון בצק" - משוך חתיכה קטנה מהבצק בין האצבעות. אם הוא נמתח לממברנה דקה שקופה מבלי להיקרע, הלישה הושלמה בהצלחה.
-    </div>
-    
-    <h3>התפחה וחלוקה</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      <strong>התפחה ראשונית:</strong>
-      <ul>
-        <li>העבר את הבצק לקערה משומנת, כסה במגבת לחה או ניילון נצמד</li>
-        <li>הנח להתפחה בטמפרטורת החדר למשך כ-2 שעות (עד שמכפיל את נפחו)</li>
-      </ul>
-    </div>
-    
-    <div class="image-placeholder">
-      <img src="/api/placeholder/250/150" alt="בצק אחרי התפחה ראשונית">
-    </div>
-  </div>
-  <div class="page-number">2</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <div class="step">
-      <div class="step-number">2</div>
-      <strong>חלוקה:</strong>
-      <ul>
-        <li>חלק את הבצק ל-6 כדורים שווים (כ-250-260 גרם כל אחד)</li>
-        <li>עצב כל חלק לכדור חלק וצפוף</li>
-      </ul>
-    </div>
-    
-    <div class="step">
-      <div class="step-number">3</div>
-      <strong>התפחה שנייה:</strong>
-      <ul>
-        <li>הנח את הכדורים על מגש מקומח קלות, עם מרווח ביניהם</li>
-        <li>כסה והנח להתפחה של 4-6 שעות בטמפרטורת החדר או 24-48 שעות במקרר (מומלץ!)</li>
-      </ul>
-    </div>
-    
-    <h3>אחסון הבצק במקרר</h3>
-    <ul>
-      <li><strong>קופסאות אישיות:</strong> הנח כל כדור בצק בקופסת אחסון נפרדת עם מעט שמן</li>
-      <li><strong>דגש חשוב:</strong> ודא שהכיסוי אטום למניעת התייבשות</li>
-      <li><strong>אל תדחוס:</strong> השאר מקום לבצק להתפחות</li>
-    </ul>
-    
-    <div class="box">
-      <strong>למה לחכות 24-48 שעות?</strong><br>
-      התפחה איטית במקרר מאפשרת פיתוח טעמים מורכבים יותר ומרקם מושלם. תהליך זה נקרא "התסיסה הקרה" והוא סוד של פיציולו (אופה פיצה) מקצועי!
-    </div>
-  </div>
-  
-  <div id="stretching" class="section">
-    <h2>טכניקת רידוד הבצק</h2>
-    
-    <h3>הכנות לפני הרידוד</h3>
-    <ol>
-      <li>הוצא את הבצק מהמקרר כשעה-שעתיים לפני הרידוד</li>
-      <li>פזר מעט קמח על משטח העבודה</li>
-      <li>הכן קערית עם קמח סמולינה או סולת תירס לכף הפיצה</li>
-    </ol>
-    
-    <div class="warning">
-      <strong>חשוב!</strong> בצק קר מדי יהיה קשה לרידוד וייטה להתכווץ חזרה. המתן עד שהבצק מגיע לטמפרטורת החדר.
-    </div>
-    
-    <h3>שלבים ברידוד הבצק</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      <strong>שחרור כדור הבצק:</strong>
-      <ul>
-        <li>לחץ בעדינות מהמרכז כלפי חוץ עם קצות האצבעות, בלי לגעת בשוליים (כ-2 ס"מ מהקצה)</li>
-        <li>סובב והפוך את הבצק ובצע את אותה פעולה בצד השני</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-number">3</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <div class="step">
-      <div class="step-number">2</div>
-      <strong>רידוד ראשוני:</strong>
-      <ul>
-        <li>לחץ במרכז ודחוף את האוויר לכיוון השוליים בתנועה סיבובית</li>
-        <li>שמור על השוליים ללא נגיעה (לקרום מוגבה)</li>
-      </ul>
-    </div>
-    
-    <div class="image-placeholder">
-      <img src="/api/placeholder/250/150" alt="טכניקת רידוד הבצק">
-    </div>
-    
-    <div class="step">
-      <div class="step-number">3</div>
-      <strong>טכניקת ההרמה והסיבוב:</strong>
-      <ul>
-        <li>הרם את הבצק והנח על גב כפות ידיך</li>
-        <li>סובב כמו הגה מכונית, תוך שימוש בכבידה למתיחה עדינה</li>
-        <li>פרוס בעדינות את האצבעות למתיחה נוספת</li>
-      </ul>
-    </div>
-    
-    <h3>עובי רצוי</h3>
-    <ul>
-      <li><strong>במרכז:</strong> 2-3 מ"מ בלבד (כעובי מטבע של 10 אגורות)</li>
-      <li><strong>בשוליים:</strong> כ-1-1.5 ס"מ עובי לקרום המוגבה</li>
-    </ul>
-    
-    <div class="tip">
-      <strong>זכור:</strong> בפיצה נאפוליטנית אמיתית, אם אתה מחזיק את הבצק המרודד מול אור, המרכז צריך להיות שקוף למחצה, בעוד השוליים נשארים עבים יותר.
-    </div>
-    
-    <h3>טיפים חשובים לרידוד</h3>
-    <ul>
-      <li><strong>אל תשתמש במערוך!</strong> בפיצה נאפוליטנית, הרידוד נעשה רק בידיים</li>
-      <li>טפל בבצק בעדינות לשמירת בועות האוויר שנוצרו בהתפחה</li>
-      <li>אם הבצק נקרע, קפל וחזור להתחלה או השתמש בכדור אחר</li>
-      <li>אם הבצק מתכווץ, הנח לו לנוח 5-10 דקות ונסה שוב</li>
-    </ul>
-  </div>
-  
-  <div id="sauce" class="section">
-    <h2>הכנת רוטב פיצה קלאסי</h2>
-    
-    <div class="ingredients">
-      <h3>מרכיבים</h3>
-      <ul>
-        <li>400 גרם עגבניות איכותיות (עדיף סאן מרצאנו)</li>
-        <li>1/2 כפית מלח ים</li>
-        <li>1 כף שמן זית כתית מעולה</li>
-        <li>1 שן שום (אופציונלי)</li>
-        <li>עלי בזיליקום טריים (אופציונלי)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-number">4</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <h3>הכנת הרוטב</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      רסק את העגבניות ביד או במעבד מזון לזמן קצר (הטקסטורה צריכה להישאר)
-    </div>
-    
-    <div class="step">
-      <div class="step-number">2</div>
-      הוסף מלח ושמן זית ובחש
-    </div>
-    
-    <div class="step">
-      <div class="step-number">3</div>
-      אם משתמשים בשום, כתוש אותו דק ובחש פנימה
-    </div>
-    
-    <div class="step">
-      <div class="step-number">4</div>
-      השאר את הרוטב בצד לפחות 30 דקות לפני השימוש
-    </div>
-    
-    <div class="box">
-      <strong>סוד מהמקצוענים:</strong> ברוטב פיצה נאפוליטני אמיתי, העגבניות אינן מבושלות לפני השימוש! זהו רוטב טרי שמקבל את הבישול שלו רק בתנור, מה שמשאיר את הטעם רענן ועגבנייתי.
-    </div>
-    
-    <div class="image-placeholder">
-      <img src="/api/placeholder/250/150" alt="רוטב פיצה טרי">
-    </div>
-  </div>
-  
-  <div id="baking" class="section">
-    <h2>הפעלת התנור והאפייה</h2>
-    
-    <h3>הכנת התנור</h3>
-    <ol>
-      <li>ודא שהתנור מוצב על משטח יציב, רחוק מחומרים דליקים</li>
-      <li>חבר את מיכל הגז בהתאם להוראות היצרן</li>
-      <li>בדוק שאין דליפות גז באמצעות מי סבון על החיבורים</li>
-    </ol>
-    
-    <div class="warning">
-      <strong>זהירות!</strong> לעולם אל תפעיל את התנור במקום סגור ללא אוורור מתאים. ודא שיש מרחק בטוח מחומרים דליקים.
-    </div>
-    
-    <h3>חימום התנור</h3>
-    <ol>
-      <li>הדלק את התנור בהתאם להוראות היצרן</li>
-      <li>חמם את התנור לפחות 30-45 דקות לפני האפייה</li>
-      <li>טמפרטורת האבן האידיאלית: 430-480°C</li>
-    </ol>
-  </div>
-  <div class="page-number">5</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <h3>אפיית הפיצה</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      פזר קמח סמולינה/סולת תירס על כף הפיצה
-    </div>
-    
-    <div class="step">
-      <div class="step-number">2</div>
-      הנח את הבצק המרודד על הכף
-    </div>
-    
-    <div class="step">
-      <div class="step-number">3</div>
-      מרח במהירות רוטב ותוספות - אל תעמיס יותר מדי!
-    </div>
-    
-    <div class="step">
-      <div class="step-number">4</div>
-      העבר לתנור בתנועה מהירה וחלקה
-    </div>
-    
-    <div class="step">
-      <div class="step-number">5</div>
-      סובב את הפיצה באמצע האפייה לקבלת תוצאה אחידה
-    </div>
-    
-    <div class="step">
-      <div class="step-number">6</div>
-      זמן אפייה אופייני: 60-90 שניות
-    </div>
-    
-    <div class="image-placeholder">
-      <img src="/api/placeholder/250/150" alt="פיצה בתהליך אפייה">
-    </div>
-    
-    <div class="tip">
-      <strong>איך לדעת שהפיצה מוכנה?</strong> הפיצה מוכנה כאשר הקרום מנופח עם כתמים שחורים אופייניים ("ליאופרדינג"), והתוספות מבושלות. תחתית הפיצה צריכה להיות פריכה אך לא שרופה.
-    </div>
-  </div>
-  
-  <div id="cleaning" class="section">
-    <h2>ניקיון ותחזוקה</h2>
-    
-    <h3>לאחר כל שימוש</h3>
-    
-    <div class="step">
-      <div class="step-number">1</div>
-      <strong>המתן לקירור מלא</strong> - לפחות שעתיים! ניקוי תנור חם הוא מסוכן ועלול לגרום נזק.
-    </div>
-    
-    <div class="step">
-      <div class="step-number">2</div>
-      <strong>ניקוי אבן האפייה:</strong>
-      <ul>
-        <li>השתמש במגרדת עדינה (רצוי מפלסטיק קשיח) להסרת שאריות שנדבקו</li>
-        <li>אין להשתמש במים על האבן!</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-number">6</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <div class="step">
-      <div class="step-number">3</div>
-      <strong>ניקוי חלקי מתכת:</strong>
-      <ul>
-        <li>נגב עם מטלית לחה וסבון עדין</li>
-        <li>יבש היטב למניעת חלודה</li>
-      </ul>
-    </div>
-    
-    <div class="warning">
-      <strong>לעולם אל תשתמש:</strong>
-      <ul>
-        <li>בחומרי ניקוי שוחקים חזקים</li>
-        <li>בכימיקלים תעשייתיים חזקים</li>
-        <li>במכשירי קיטור לניקוי האבן</li>
-        <li>במברשות מתכת על חלקי הנירוסטה</li>
-      </ul>
-    </div>
-    
-    <h3>ניקיון תקופתי (חודשי)</h3>
-    <ol>
-      <li>בדוק ונקה את מערכת הגז ופתחי המבער</li>
-      <li>בדוק את צינור הגז והחיבורים לאיתור דליפות</li>
-      <li>נקה את הארובה (אם יש) ואת האטמים</li>
-    </ol>
-    
-    <h3>אחסון לטווח ארוך</h3>
-    <ol>
-      <li>נקה היטב את כל חלקי התנור</li>
-      <li>נתק את מיכל הגז</li>
-      <li>כסה בכיסוי עמיד במים אם התנור נמצא בחוץ</li>
-    </ol>
-    
-    <div class="tip">
-      <strong>טיפ לתחזוקה:</strong> חמם את התנור לטמפרטורה מקסימלית למשך 20-30 דקות אחת לכמה שימושים כדי לשרוף שאריות ולבצע מעין "ניקוי עצמי".
-    </div>
-  </div>
-  
-  <div id="tips" class="section">
-    <h2>טיפים מתקדמים</h2>
-    
-    <h3>שדרוג הבצק</h3>
-    <ul>
-      <li>התנסה בהידרציה גבוהה יותר (עד 75%) לבצק אוורירי במיוחד</li>
-      <li>נסה תערובות קמח מיוחדות (כוסמין, קמח מלא, שיפון)</li>
-      <li>הארך את זמן ההתפחה במקרר עד 72 שעות לטעם עמוק יותר</li>
-    </ul>
-  </div>
-  <div class="page-number">7</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <h3>גיוון במתכונים</h3>
-    
-    <h4>קלאסיקות איטלקיות</h4>
-    <ul>
-      <li><strong>מרגריטה:</strong> רוטב, מוצרלה טרייה, בזיליקום ושמן זית</li>
-      <li><strong>מרינרה:</strong> רוטב, שום, אורגנו ושמן זית (ללא גבינה)</li>
-      <li><strong>קוואטרו פורמאג'י:</strong> ארבע גבינות - מוצרלה, גורגונזולה, פרמזן ופונטינה</li>
-    </ul>
-    
-    <h4>וריאציות מעניינות</h4>
-    <ul>
-      <li>פיצה עם דבש חריף ונקניק איטלקי</li>
-      <li>פיצה לבנה (ללא רוטב) עם תערובת פטריות וכמהין</li>
-      <li>פיצת בוקר עם ביצה וירקות העונה</li>
-    </ul>
-    
-    <div class="image-placeholder">
-      <img src="/api/placeholder/250/150" alt="מגוון פיצות איטלקיות">
-    </div>
-    
-    <h3>טכניקות אפייה מתקדמות</h3>
-    <ul>
-      <li><strong>טכניקת הדופלקס:</strong> אפייה כפולה לקבלת מרקם מושלם. אפה את הפיצה ראשית בחום גבוה מאוד למשך 60 שניות, הוצא והנח להתקרר מעט, ואז אפה שוב למשך זמן קצר</li>
-      <li><strong>שליטה בטמפרטורה:</strong> למד להכיר את אזורי החום השונים בתנור שלך</li>
-      <li><strong>סיבוב הפיצה:</strong> סובב את הפיצה באופן תדיר יותר לקבלת "ליאופרדינג" אחיד</li>
-    </ul>
-  </div>
-  
-  <div id="safety" class="section">
-    <h2>בטיחות</h2>
-    
-    <h3>כללים בסיסיים</h3>
-    <ol>
-      <li>הרחק את התנור מחומרים דליקים</li>
-      <li>שמור על אוורור טוב באזור ההפעלה</li>
-      <li>לעולם אל תשאיר תנור דולק ללא השגחה</li>
-      <li>הרחק ילדים וחיות מחמד מהתנור</li>
-    </ol>
-  </div>
-  <div class="page-number">8</div>
-</div>
-
-<div class="page">
-  <div class="section">
-    <h3>בדיקות תקופתיות</h3>
-    <ol>
-      <li>בדוק את צינור הגז והחיבורים באופן קבוע</li>
-      <li>החלף צינורות וחיבורים פגומים מיד</li>
-      <li>אם יש ריח של גז, כבה מיד את התנור ואת מקור הגז וטפל בבעיה</li>
-    </ol>
-    
-    <div class="warning">
-      <strong>זכור:</strong> יש להצטייד במטף כיבוי אש בקרבת מקום בעת השימוש בתנור. התנור מגיע לטמפרטורות גבוהות מאוד והשימוש בגז דורש זהירות יתרה.
-    </div>
-  </div>
-  
-  <div id="troubleshooting" class="section">
-    <h2>פתרון בעיות נפוצות</h2>
-    
-    <table>
-      <tr>
-        <th>בעיה</th>
-        <th>סיבה אפשרית</th>
-        <th>פתרון</th>
-      </tr>
-      <tr>
-        <td>בצק נדבק לכף</td>
-        <td>יותר מדי תוספות או לא מספיק קמח על הכף</td>
-        <td>השתמש ביותר קמח סמולינה/סולת תירס על הכף</td>
-      </tr>
-      <tr>
-        <td>תחתית הפיצה נשרפת</td>
-        <td>טמפרטורת אבן גבוהה מדי</td>
-        <td>הנמך את הלהבה מעט או הרם את הפיצה גבוה יותר בתנור</td>
-      </tr>
-      <tr>
-        <td>שוליים לא מתנפחים</td>
-        <td>בצק לא התפחה מספיק או נלחץ יותר מדי בשוליים</td>
-        <td>תן לבצק להתפחות יותר זמן; הקפד לא לגעת בשוליים בעת הרידוד</td>
-      </tr>
-      <tr>
-        <td>מרכז הפיצה רטוב מדי</td>
-        <td>יותר מדי רוטב או תוספות רטובות</td>
-        <td>הפחת את כמות הרוטב; סנן עגבניות ומוצרלה לפני השימוש</td>
-      </tr>
-      <tr>
-        <td>אש חלשה מדי</td>
-        <td>בעיות בזרימת הגז או לחץ נמוך</td>
-        <td>בדוק את חיבורי הגז; ודא שמיכל הגז לא ריק כמעט</td>
-      </tr>
-      <tr>
-        <td>התנור לא מגיע לטמפרטורה הנדרשת</td>
-        <td>זרימת אוויר לקויה או חסימה בפתחי אוויר</td>
-        <td>נקה את פתחי האוויר; ודא שהארובה (אם יש) לא חסומה</td>
-      </tr>
-    </table>
-  </div>
-  <div class="page-number">9</div>
-</div>
-
-<div class="page">
-  <div id="glossary" class="section">
-    <h2>מילון מונחים לפיצה נאפוליטנית</h2>
-    
-    <table>
-      <tr>
-        <th>מונח</th>
-        <th>פירוש</th>
-      </tr>
-      <tr>
-        <td><strong>קורניצ'ונה (Cornicione)</strong></td>
-        <td>השוליים המוגבהים של הפיצה</td>
-      </tr>
-      <tr>
-        <td><strong>ליאופרדינג (Leoparding)</strong></td>
-        <td>הכתמים השחורים האופייניים על קרום הפיצה</td>
-      </tr>
-      <tr>
-        <td><strong>הידרציה (Hydration)</strong></td>
-        <td>אחוז המים בבצק ביחס למשקל הקמח</td>
-      </tr>
-      <tr>
-        <td><strong>"00" (Tipo 00)</strong></td>
-        <td>דירוג איטלקי לקמח טחון דק במיוחד</td>
-      </tr>
-      <tr>
-        <td><strong>סאן מרצאנו (San Marzano)</strong></td>
-        <td>זן עגבניות איטלקי משובח לרוטב פיצה</td>
-      </tr>
-      <tr>
-        <td><strong>פיאדינה (Fiadone)</strong></td>
-        <td>מעין פיצה מקופלת מהמטבח האיטלקי</td>
-      </tr>
-      <tr>
-        <td><strong>קוואטרו סטג'יוני (Quattro Stagioni)</strong></td>
-        <td>פיצה "ארבע עונות" עם ארבעה רבעים שונים של תוספות</td>
-      </tr>
-      <tr>
-        <td><strong>פיציולו (Pizzaiolo)</strong></td>
-        <td>אופה פיצה מקצועי</td>
-      </tr>
-      <tr>
-        <td><strong>פוקאצ'ה (Focaccia)</strong></td>
-        <td>לחם איטלקי שטוח, דומה לבצק פיצה אך עבה יותר</td>
-      </tr>
-    </table>
     
     <div class="footer">
-      <p>המדריך המושלם לתנור פיצה של Cozze - כל הזכויות שמורות © 2025</p>
-      <p>בהצלחה עם הפיצות שלך!</p>
+      המדריך המושלם לתנור פיצה של Cozze | נוצר על ידי אופיר עוז © 2025
     </div>
   </div>
-  <div class="page-number">10</div>
-</div>
-
 </body>
 </html>
